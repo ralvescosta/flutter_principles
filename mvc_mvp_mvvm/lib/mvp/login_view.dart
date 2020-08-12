@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_mvp_mvvm/home_view.dart';
-import 'package:mvc_mvp_mvvm/mvc/login_controller.dart';
 import 'package:mvc_mvp_mvvm/mvc/login_repository.dart';
+import 'package:mvc_mvp_mvvm/mvp/login_presenter.dart';
 
-class LoginViewMVC extends StatefulWidget {
+class LoginViewMVP extends StatefulWidget {
   @override
-  _LoginViewMVCState createState() => _LoginViewMVCState();
+  _LoginViewMVPState createState() => _LoginViewMVPState();
 }
 
-class _LoginViewMVCState extends State<LoginViewMVC> {
+class _LoginViewMVPState extends State<LoginViewMVP>
+    implements LoginViewContract {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  LoginController controller;
+  LoginPresenter presenter;
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    controller = LoginController(LoginRepository());
+    presenter = LoginPresenter(LoginRepository(), this);
   }
 
   @override
@@ -25,7 +26,8 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
     super.dispose();
   }
 
-  _loginSuccess() {
+  @override
+  loginSuccess() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -34,7 +36,8 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
     );
   }
 
-  _loginError() {
+  @override
+  loginError() {
     _scaffoldKey.currentState.showSnackBar(
       SnackBar(
         content: Text('Login Error'),
@@ -44,11 +47,16 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
   }
 
   @override
+  loginManager() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
         body: Form(
-          key: controller.formKey,
+          key: presenter.formKey,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -59,7 +67,7 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
                     border: OutlineInputBorder(),
                     labelText: 'email',
                   ),
-                  onSaved: controller.userEmail,
+                  onSaved: presenter.userEmail,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Campo Obrigatorio';
@@ -75,7 +83,7 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
                     border: OutlineInputBorder(),
                     labelText: 'password',
                   ),
-                  onSaved: controller.userPassword,
+                  onSaved: presenter.userPassword,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Campo Obrigatorio';
@@ -87,25 +95,12 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
                   height: 30,
                 ),
                 RaisedButton(
-                    padding: EdgeInsets.symmetric(horizontal: 80),
-                    textColor: Colors.white,
-                    color: Colors.blue,
-                    child: Text('ENTER'),
-                    onPressed: isLoading
-                        ? null
-                        : () async {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            if (await controller.login()) {
-                              _loginSuccess();
-                            } else {
-                              _loginError();
-                            }
-                            setState(() {
-                              isLoading = false;
-                            });
-                          })
+                  padding: EdgeInsets.symmetric(horizontal: 80),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: Text('ENTER'),
+                  onPressed: presenter.isLoading ? null : presenter.login,
+                )
               ],
             ),
           ),
