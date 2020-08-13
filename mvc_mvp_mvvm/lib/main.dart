@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvc_mvp_mvvm/mvp/login_view.dart';
+import 'package:mvc_mvp_mvvm/mvvm/login_view.dart';
 
 void main() {
   runApp(App());
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginViewMVP(),
+      home: LoginViewMVVM(),
     );
   }
 }
