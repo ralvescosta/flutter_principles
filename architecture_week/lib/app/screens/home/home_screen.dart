@@ -1,9 +1,7 @@
-import 'package:architecture_week/app/repository/api_advisor_repository.dart';
 import 'package:architecture_week/app/screens/home/components/custom_switch_widget.dart';
 import 'package:architecture_week/app/screens/home/home_controller.dart';
-import 'package:architecture_week/app/services/client_http_services.dart';
-import 'package:architecture_week/app/viewmodels/api_advisor_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,8 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final controller = HomeController(
-      ApiAdvisorViewModel(ApiAdvisorRepository(ClientHttpService())));
+  final controller = Modular.get<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Home Screen"),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.account_balance),
+        child: Icon(Icons.cloud),
         onPressed: () {
           controller.fetchWeather();
         },

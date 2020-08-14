@@ -76,6 +76,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_modular:
+    dependency: "direct main"
+    description:
+      name: flutter_modular
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -114,6 +121,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.2"
+  mockito:
+    dependency: "direct dev"
+    description:
+      name: mockito
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.1"
   path:
     dependency: transitive
     description:

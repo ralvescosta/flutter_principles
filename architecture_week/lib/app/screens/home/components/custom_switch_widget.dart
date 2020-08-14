@@ -1,14 +1,14 @@
 import 'package:architecture_week/app/app_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CustomSwitchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
-      value: AppController.instance.isDark,
+      value: Modular.get<AppController>().isDark,
       onChanged: (value) {
-        print(AppController.instance.isDark);
-        AppController.instance.viewModel.changeTheme(value);
+        Modular.get<AppController>().viewModel.changeTheme(value);
       },
     );
   }
