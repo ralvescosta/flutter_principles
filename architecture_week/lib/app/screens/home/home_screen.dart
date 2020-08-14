@@ -1,4 +1,4 @@
-import 'package:architecture_week/app/components/custom_switch_widget.dart';
+import 'package:architecture_week/app/screens/home/components/custom_switch_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
