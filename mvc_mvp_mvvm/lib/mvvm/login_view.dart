@@ -20,7 +20,7 @@ class _LoginViewMVVMState extends State<LoginViewMVVM> {
   void initState() {
     super.initState();
     viewModel = LoginViewModel(LoginRepository());
-    viewModel.isLoadingOut.listen((isLogin) {
+    viewModel.isLoginOut.listen((isLogin) {
       if (isLogin) {
         _loginSuccess();
       } else {
@@ -97,26 +97,28 @@ class _LoginViewMVVMState extends State<LoginViewMVVM> {
                   height: 30,
                 ),
                 StreamBuilder<bool>(
-                    stream: viewModel.isLoadingOut,
-                    initialData: false,
-                    builder: (context, snapshot) {
-                      bool isLoading = snapshot.data;
-                      return RaisedButton(
-                          padding: EdgeInsets.symmetric(horizontal: 80),
-                          textColor: Colors.white,
-                          color: Colors.blue,
-                          child: Text('ENTER'),
-                          onPressed: isLoading
-                              ? null
-                              : () {
-                                  if (!_formKey.currentState.validate()) {
-                                    return;
-                                  } else {
-                                    _formKey.currentState.save();
-                                    viewModel.isLoginInput.add(user);
-                                  }
-                                });
-                    })
+                  stream: viewModel.isLoadingOut,
+                  initialData: false,
+                  builder: (context, snapshot) {
+                    bool isLoading = snapshot.data;
+                    return RaisedButton(
+                      padding: EdgeInsets.symmetric(horizontal: 80),
+                      textColor: Colors.white,
+                      color: Colors.blue,
+                      child: Text('ENTER'),
+                      onPressed: isLoading
+                          ? null
+                          : () {
+                              if (!_formKey.currentState.validate()) {
+                                return;
+                              } else {
+                                _formKey.currentState.save();
+                                viewModel.isLoginInput.add(user);
+                              }
+                            },
+                    );
+                  },
+                )
               ],
             ),
           ),
