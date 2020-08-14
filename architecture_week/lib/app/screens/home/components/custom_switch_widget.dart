@@ -7,7 +7,8 @@ class CustomSwitchWidget extends StatelessWidget {
     return Switch(
       value: AppController.instance.isDark,
       onChanged: (value) {
-        AppController.instance.changeTheme(value);
+        print(AppController.instance.isDark);
+        AppController.instance.viewModel.changeTheme(value);
       },
     );
   }
