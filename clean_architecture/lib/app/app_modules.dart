@@ -1,4 +1,5 @@
 import 'package:clean_architecture/app/app_widget.dart';
+import 'package:clean_architecture/app/modules/search/presenter/search/search_bloc.dart';
 import 'package:clean_architecture/app/modules/search/presenter/search/search_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,6 +16,7 @@ class AppModules extends MainModule {
         Bind((i) => GitHubDataSource(i())),
         Bind((i) => SearchRepositoryImpl(i())),
         Bind((i) => SearchByTextImpl(i())),
+        Bind((i) => SearchBloc(i())),
       ];
 
   @override
