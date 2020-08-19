@@ -1,7 +1,7 @@
-import 'package:clean_architecture/app/modules/search/domain/errors/errors.dart';
-import 'package:clean_architecture/app/modules/search/infra/datasources/search_datasource.dart';
-import 'package:clean_architecture/app/modules/search/infra/models/result_search_model.dart';
-import 'package:clean_architecture/app/modules/search/infra/repositories/search_repository_impl.dart';
+import 'package:clean_architecture/app/modules/search/business/errors/errors.dart';
+import 'package:clean_architecture/app/modules/search/application/datasources/search_datasource.dart';
+import 'package:clean_architecture/app/modules/search/application/models/result_search_model.dart';
+import 'package:clean_architecture/app/modules/search/application/repositories/search_repository_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

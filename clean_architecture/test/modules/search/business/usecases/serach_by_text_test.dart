@@ -1,9 +1,9 @@
-import 'package:clean_architecture/app/modules/search/domain/errors/errors.dart';
+import 'package:clean_architecture/app/modules/search/business/errors/errors.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:clean_architecture/app/modules/search/domain/repositories/search_repository.dart';
-import 'package:clean_architecture/app/modules/search/domain/entities/result_search.dart';
-import 'package:clean_architecture/app/modules/search/domain/usecases/search_by_text.dart';
+import 'package:clean_architecture/app/modules/search/business/repositories/search_repository.dart';
+import 'package:clean_architecture/app/modules/search/business/entities/result_search.dart';
+import 'package:clean_architecture/app/modules/search/business/usecases/search_by_text.dart';
 import 'package:mockito/mockito.dart';
 
 class SearchRepositorySpy extends Mock implements SearchRepository {}

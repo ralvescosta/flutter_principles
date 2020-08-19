@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:clean_architecture/app/modules/search/domain/entities/result_search.dart';
+import 'package:clean_architecture/app/modules/search/business/entities/result_search.dart';
 
 class ResultSearchModel extends ResultSearch {
   final String title;
