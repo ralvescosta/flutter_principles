@@ -87,25 +87,28 @@ class _LoginViewMVCState extends State<LoginViewMVC> {
                   height: 30,
                 ),
                 RaisedButton(
-                    padding: EdgeInsets.symmetric(horizontal: 80),
-                    textColor: Colors.white,
-                    color: Colors.blue,
-                    child: Text('ENTER'),
-                    onPressed: isLoading
-                        ? null
-                        : () async {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            if (await controller.login()) {
-                              _loginSuccess();
-                            } else {
-                              _loginError();
-                            }
-                            setState(() {
+                  padding: EdgeInsets.symmetric(horizontal: 80),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: Text('ENTER'),
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          if (await controller.login()) {
+                            _loginSuccess();
+                          } else {
+                            _loginError();
+                          }
+                          setState(
+                            () {
                               isLoading = false;
-                            });
-                          })
+                            },
+                          );
+                        },
+                )
               ],
             ),
           ),
